@@ -1,0 +1,23 @@
+{
+    "welcome": "歡迎回來",
+    "goodMorning": "早安",
+    "goodAfternoon": "午安",
+    "goodNight": "晚安",
+    "search": "查詢衛教知識",
+    "homeAppbarTitle": "送子鳥",
+    "drawerVersion": "版本",
+    "drawerMenuItemIndex": "首頁",
+    "drawerMenuItemMedicalCenter": "院所資訊",
+    "drawerMenuItemHealthEducation": "衛教懶人包",
+    "drawerMenuItemCustomerService": "一鍵客服",
+    "drawerMenuItemPersonalSetting": "帳戶設定",
+    "bottomAppBarItemReservation": "預約掛號",
+    "bottomAppBarItemMedicalConsultationProgress": "看診進度",
+    "bottomAppBarItemTodoList": "今日流程",
+    "bottomAppBarItemExamineReport": "檢驗報告",
+    "bottomAppBarItemCellInfo": "卵胚資訊",
+    "bottomAppBarItemFee": "費用資訊",
+    "upcoming": "即將到來",
+    "viewAll": "查看更多",
+    "recommendArticle": "推薦文章"
+}

@@ -1,0 +1,23 @@
+{
+    "welcome": "Welcome Back",
+    "goodMorning": "Good Morning",
+    "goodAfternoon": "Good Afternoon",
+    "goodNight": "Good Night",
+    "search": "Search Health Knowledge",
+    "homeAppbarTitle": "Stork",
+    "drawerVersion": "v",
+    "drawerMenuItemIndex": "Home",
+    "drawerMenuItemMedicalCenter": "Medical Info",
+    "drawerMenuItemHealthEducation": "Health Education",
+    "drawerMenuItemCustomerService": "Customer Service",
+    "drawerMenuItemPersonalSetting": "Personal Setting",
+    "bottomAppBarItemReservation": "Reservation",
+    "bottomAppBarItemMedicalConsultationProgress": "Process",
+    "bottomAppBarItemTodoList": "Todo",
+    "bottomAppBarItemExamineReport": "Examine Report",
+    "bottomAppBarItemCellInfo": "Cells Info",
+    "bottomAppBarItemFee": "Fee",
+    "upcoming": "Upcoming",
+    "viewAll": "Viwe all",
+    "recommendArticle": "Recommend Article"
+}
