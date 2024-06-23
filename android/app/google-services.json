@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357624301456",
+    "project_id": "stork-demo-app",
+    "storage_bucket": "stork-demo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357624301456:android:38842c04edea249e725515",
+        "android_client_info": {
+          "package_name": "tw.com.estork.demo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBDSIeqlI9-V7bd-5xSs4ppcr1YjCj5zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

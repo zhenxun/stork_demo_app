@@ -1,6 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:stork_demo_app/controllers/login_controller.dart';
 import 'package:stork_demo_app/pages/widgets/bottom_app_bar_item.dart';
 import 'package:stork_demo_app/pages/widgets/drawer_item.dart';
 import 'package:stork_demo_app/pages/widgets/recommend_article.dart';
@@ -18,9 +21,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final LoginController loginController = Get.put(LoginController());
+
   @override
   void initState() {
     FlutterNativeSplash.remove();
+    loginController.authController.authState();
     super.initState();
   }
 
@@ -28,81 +34,96 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: Center(
-        //   child: Text(
-        //     AppLocalizations.of(context)!.homeAppbarTitle,
-        //     style: const TextStyle(
-        //       color: Colors.black,
-        //       fontSize: 12.0,
-        //       letterSpacing: 3.0,
-        //     ),
-        //   ),
-        // ),
         actions: [
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
             iconSize: 15.0,
-            onPressed: () {},
+            onPressed: () async {
+              if (loginController.authController.authenticated) {
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.question,
+                  animType: AnimType.rightSlide,
+                  title: "登出",
+                  desc: "確定要登出嗎?",
+                  btnOkText: "登出",
+                  btnCancelText: "取消",
+                  btnCancelOnPress: () {},
+                  btnOkOnPress: () async {
+                    await loginController.logout();
+                  },
+                ).show();
+              } else {
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.question,
+                  animType: AnimType.rightSlide,
+                  title: "尚未登入",
+                  btnOkText: "登入",
+                  btnCancelText: "取消",
+                  btnCancelOnPress: () {},
+                  btnOkOnPress: () async {
+                    Get.toNamed('/login');
+                  },
+                ).show();
+              }
+            },
           ),
         ],
       ),
       drawer: Drawer(
-        child: Container(
-          child: ListView(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 80.0),
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                ),
-                child: Text(
-                  "${AppLocalizations.of(context)!.drawerVersion} 1.0.0",
-                  style: const TextStyle(
-                    fontSize: 13.0,
-                    letterSpacing: 3.0,
-                  ),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 80.0),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
+              child: Text(
+                "${AppLocalizations.of(context)!.drawerVersion} 1.0.0",
+                style: const TextStyle(
+                  fontSize: 13.0,
+                  letterSpacing: 3.0,
                 ),
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              DrawerItem(
-                title: AppLocalizations.of(context)!.drawerMenuItemIndex,
-                icon: const Icon(Icons.home),
-                onTap: () {},
-              ),
-              DrawerItem(
-                title:
-                    AppLocalizations.of(context)!.drawerMenuItemMedicalCenter,
-                icon: const Icon(Icons.medical_services),
-                onTap: () {},
-              ),
-              DrawerItem(
-                title:
-                    AppLocalizations.of(context)!.drawerMenuItemHealthEducation,
-                icon: const Icon(Icons.book),
-                onTap: () {},
-              ),
-              DrawerItem(
-                title:
-                    AppLocalizations.of(context)!.drawerMenuItemCustomerService,
-                icon: const Icon(Icons.support_agent),
-                onTap: () {},
-              ),
-              DrawerItem(
-                title:
-                    AppLocalizations.of(context)!.drawerMenuItemPersonalSetting,
-                icon: const Icon(Icons.settings),
-                onTap: () {},
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+            DrawerItem(
+              title: AppLocalizations.of(context)!.drawerMenuItemIndex,
+              icon: const Icon(Icons.home, color: kPrimaryColor),
+              onTap: () {},
+            ),
+            DrawerItem(
+              title: AppLocalizations.of(context)!.drawerMenuItemMedicalCenter,
+              icon: const Icon(Icons.medical_services, color: kPrimaryColor),
+              onTap: () {},
+            ),
+            DrawerItem(
+              title:
+                  AppLocalizations.of(context)!.drawerMenuItemHealthEducation,
+              icon: const Icon(Icons.book, color: kPrimaryColor),
+              onTap: () {},
+            ),
+            DrawerItem(
+              title:
+                  AppLocalizations.of(context)!.drawerMenuItemCustomerService,
+              icon: const Icon(Icons.support_agent, color: kPrimaryColor),
+              onTap: () {},
+            ),
+            DrawerItem(
+              title:
+                  AppLocalizations.of(context)!.drawerMenuItemPersonalSetting,
+              icon: const Icon(Icons.settings, color: kPrimaryColor),
+              onTap: () {},
+            ),
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.toNamed("/qrcode"),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.transparent,
         elevation: 0,

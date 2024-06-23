@@ -1,15 +1,27 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:stork_demo_app/controllers/auth_controller.dart';
 import 'package:stork_demo_app/routes.dart';
 import 'package:stork_demo_app/theme.dart';
 import './l10n/gen_l10n/app_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(
       widgetsBinding: widgetsBinding); // 安裝 flutter_native_splash 套件
+
+  // Firebase 初始化
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  Get.put(AuthController());
+
   runApp(const MyApp());
 }
 
@@ -28,7 +40,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       locale: const Locale.fromSubtags(
         languageCode: 'zh',
-        scriptCode: 'Hans',
+        scriptCode: 'Hant',
         countryCode: 'TW',
       ),
       fallbackLocale: const Locale.fromSubtags(
@@ -36,6 +48,7 @@ class MyApp extends StatelessWidget {
         countryCode: 'US',
       ),
       localizationsDelegates: const [
+        CountryLocalizations.delegate,
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
